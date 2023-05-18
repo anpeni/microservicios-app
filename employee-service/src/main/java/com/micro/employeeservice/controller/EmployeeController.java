@@ -117,26 +117,26 @@ public class EmployeeController {
 
 
 
-    public ResponseEntity<Smartphone> fallBackSaveSmartphone(@PathVariable("userid") int userid, @RequestBody Smartphone smartphone){
+    public ResponseEntity<Smartphone> fallBackSaveSmartphone(@PathVariable("userid") int userid, @RequestBody Smartphone smartphone, RuntimeException e){
 
         return new ResponseEntity("No se puede asignar smartphone al usuario " + userid, HttpStatus.OK);
     }
 
 
-    public ResponseEntity<List<Laptop>> fallBackGetAllByIdEmployee(@PathVariable("employeeId") int employeeId){
+    public ResponseEntity<List<Laptop>> fallBackGetAllByIdEmployee(@PathVariable("employeeId") int employeeId, RuntimeException e){
 
         return new ResponseEntity("No se puede acceder a los laptop del usuario " + employeeId, HttpStatus.OK);
 
     }
 
 
-    public ResponseEntity<List<Smartphone>> fallBackGetAllByIdEmployeeSmartphone(@PathVariable("employeeId") int employeeId){
+    public ResponseEntity<List<Smartphone>> fallBackGetAllByIdEmployeeSmartphone(@PathVariable("employeeId") int employeeId, RuntimeException e){
 
         return new ResponseEntity("No se puede acceder a los Smartphone del usuario " + employeeId, HttpStatus.OK);
 
     }
 
-    public ResponseEntity<Map<String,Object>> fallBackGetAllDevice(@PathVariable("employeeId") int employeeId){
+    public ResponseEntity<Map<String,Object>> fallBackGetAllDevice(@PathVariable("employeeId") int employeeId, RuntimeException e){
 
         return new ResponseEntity("No se puede acceder a los dispositivos del usuario " + employeeId, HttpStatus.OK);
 
