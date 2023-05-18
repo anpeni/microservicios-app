@@ -4,7 +4,9 @@ import com.micro.employeeservice.entity.Employee;
 import com.micro.employeeservice.model.Laptop;
 import com.micro.employeeservice.model.Smartphone;
 import com.micro.employeeservice.service.EmployeeService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +49,7 @@ public class EmployeeController {
 
         return ResponseEntity.ok(employeeNew);
     }
-
+    @CircuitBreaker(name = "laptopA", fallbackMethod = "fallBackSaveLaptop")
     @PostMapping("/savelaptop/{userid}")
     public ResponseEntity<Laptop> saveLaptop(@PathVariable("userid") int userid, @RequestBody Laptop laptop){
 
@@ -59,7 +61,7 @@ public class EmployeeController {
 
         return ResponseEntity.ok(laptopNew);
     }
-
+    @CircuitBreaker(name = "smartphoneB", fallbackMethod = "fallBackSaveSmartphone")
     @PostMapping("/savesmartphone/{userid}")
     public ResponseEntity<Smartphone> saveSmartphone(@PathVariable("userid") int userid, @RequestBody Smartphone smartphone){
 
@@ -71,7 +73,7 @@ public class EmployeeController {
 
         return ResponseEntity.ok(smartphoneNew);
     }
-
+    @CircuitBreaker(name = "laptopA", fallbackMethod = "fallBackGetAllByIdEmployee")
     @GetMapping("/laptop/{employeeId}")
     public ResponseEntity<List<Laptop>> getAllByIdEmployee(@PathVariable("employeeId") int employeeId){
         Employee employeeNew = employeeService.GetById(employeeId);
@@ -85,7 +87,7 @@ public class EmployeeController {
         return ResponseEntity.ok(listLaptop);
 
     }
-
+    @CircuitBreaker(name = "smartphoneB", fallbackMethod = "fallBackGetAllByIdEmployeeSmartphone")
     @GetMapping("/smartphone/{employeeId}")
     public ResponseEntity<List<Smartphone>> getAllByIdEmployeeSmartphone(@PathVariable("employeeId") int employeeId){
         Employee employeeNew = employeeService.GetById(employeeId);
@@ -99,7 +101,7 @@ public class EmployeeController {
         return ResponseEntity.ok(listSmartphone);
 
     }
-
+    @CircuitBreaker(name = "allC", fallbackMethod = "fallBackGetAllDevice")
     @GetMapping("/getAll/{employeeId}")
     public ResponseEntity<Map<String,Object>> getAllDevice(@PathVariable("employeeId") int employeeId){
         Map<String,Object> result = employeeService.getEmployeeAndDevice(employeeId);
@@ -108,9 +110,36 @@ public class EmployeeController {
     }
 
 
+    public ResponseEntity<Laptop> fallBackSaveLaptop(@PathVariable("userid") int userid, @RequestBody Laptop laptop, RuntimeException e){
+
+        return new ResponseEntity("No se puede asignar laptop al usuario " + userid, HttpStatus.OK);
+    }
 
 
 
+    public ResponseEntity<Smartphone> fallBackSaveSmartphone(@PathVariable("userid") int userid, @RequestBody Smartphone smartphone){
 
+        return new ResponseEntity("No se puede asignar smartphone al usuario " + userid, HttpStatus.OK);
+    }
+
+
+    public ResponseEntity<List<Laptop>> fallBackGetAllByIdEmployee(@PathVariable("employeeId") int employeeId){
+
+        return new ResponseEntity("No se puede acceder a los laptop del usuario " + employeeId, HttpStatus.OK);
+
+    }
+
+
+    public ResponseEntity<List<Smartphone>> fallBackGetAllByIdEmployeeSmartphone(@PathVariable("employeeId") int employeeId){
+
+        return new ResponseEntity("No se puede acceder a los Smartphone del usuario " + employeeId, HttpStatus.OK);
+
+    }
+
+    public ResponseEntity<Map<String,Object>> fallBackGetAllDevice(@PathVariable("employeeId") int employeeId){
+
+        return new ResponseEntity("No se puede acceder a los dispositivos del usuario " + employeeId, HttpStatus.OK);
+
+    }
 
 }
