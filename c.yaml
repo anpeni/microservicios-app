@@ -1,0 +1,10 @@
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: anpeni/microservicios-app
+  description: Un componente de ejemplo
+spec:
+  type: service
+  owner: NamedUser(login="anpeni")
+  lifecycle: experimental
