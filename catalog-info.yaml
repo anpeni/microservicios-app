@@ -4,6 +4,8 @@ kind: Component
 metadata:
   name: anpeni/microservicios-app
   description: Un componente de ejemplo
+annotations:
+  github.com/project-slug: anpeni/microservicios-app
 spec:
   type: service
   owner: anpeni
