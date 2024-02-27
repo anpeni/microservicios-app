@@ -4,6 +4,7 @@ metadata:
   name: prueba-tekton-anpeni
   description: SVSM main website
   annotations:
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=svsm'
     backstage.io/kubernetes-id: incibe-r01-svsm-app
     janus-idp.io/tekton: incibe-r01-svsm-app
     backstage.io/kubernetes-namespace: 'svsm'
