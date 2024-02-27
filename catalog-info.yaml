@@ -1,13 +1,13 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: prueba-tekton-anpen
+  name: prueba-tekton-anpenio
   description: SVSM main website
   annotations:
     backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=svsm'
     backstage.io/kubernetes-namespace: svsm
-    backstage.io/kubernetes-id: incibe-r01-svsm-app-x1
-    janus-idp.io/tekton : incibe-r01-svsm-app-x1
+    backstage.io/kubernetes-id: incibe-r01-svsm-app
+    janus-idp.io/tekton : incibe-r01-svsm-app
   tags:
     - react
     - nodejs
