@@ -1,12 +1,28 @@
-
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: anpeni/microservicios-app
-  description: Un componente de ejemplo
-annotations:
-  github.com/project-slug: anpeni/microservicios-app
+  name: prueba-tekton-anpeni
+  description: SVSM main website
+  annotations:
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=svsm'
+    backstage.io/kubernetes-namespace: 'svsm'
+    backstage.io/kubernetes-id: 'svsm'
+    janus-idp.io/tekton : 'svsm'
+  tags:
+    - react
+    - nodejs
+  links:
+    # - url: https://backstage-stg.aws.neoris.cloud/
+    #   title: Web dev
+    # icon: code
+    - url: https://github.com/DDC-NEORIS/incibe-r01-svsm-app
+      title: GitHub Repo
+      icon: Github
+    - url: https://github.com/DDC-NEORIS/incibe-r01-svsm-app-tests
+      title: GitHub Testing X
+      icon: Github
 spec:
-  type: service
-  owner: anpeni
-  lifecycle: experimental
+  type: demo
+  lifecycle: production
+  system: testops
+  owner: neoris
