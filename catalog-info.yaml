@@ -5,9 +5,9 @@ metadata:
   description: SVSM main website
   annotations:
     backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=svsm'
-    backstage.io/kubernetes-namespace: 'svsm'
-    backstage.io/kubernetes-id: 'incibe-r01-svsm-app-x1'
-    janus-idp.io/tekton : 'incibe-r01-svsm-app-x1'
+    backstage.io/kubernetes-namespace: svsm
+    backstage.io/kubernetes-id: incibe-r01-svsm-app-x1
+    janus-idp.io/tekton : incibe-r01-svsm-app-x1
   tags:
     - react
     - nodejs
