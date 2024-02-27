@@ -6,7 +6,7 @@ metadata:
   annotations:
     backstage.io/kubernetes-id: incibe-r01-svsm-app
     janus-idp.io/tekton: incibe-r01-svsm-app
-    backstage.io/kubernetes-namespace: svsm
+    backstage.io/kubernetes-namespace: 'svsm'
   tags:
     - react
     - nodejs
